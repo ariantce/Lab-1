@@ -10,13 +10,13 @@
 using namespace std;
 
 vector<double> the_gauss_metod(vector<vector<double>>& A, vector<double>& b) {
-    int n = A.size();  // ������ ������ �������
+    int n = A.size();  // setting the size of the matrix
 
     for (int i = 0; i < n; i++) {
         int max_idx = i;
         double max_val = abs(A[i][i]);
 
-        // ����� �������� �������� �� �������
+        // Selecting the main element by column
         for (int j = i + 1; j < n; j++) {
             if (abs(A[j][i]) > max_val) {
                 max_idx = j;
@@ -24,13 +24,13 @@ vector<double> the_gauss_metod(vector<vector<double>>& A, vector<double>& b) {
             }
         }
 
-        // ������������ �����
+        // Rearranging strings
         if (max_idx != i) {
             swap(A[i], A[max_idx]);
             swap(b[i], b[max_idx]);
         }
 
-        // ������ ���
+        // Straight running
         for (int j = i + 1; j < n; j++) {
             double factor = A[j][i] / A[i][i];
             for (int k = i; k < n; k++) {
@@ -41,7 +41,7 @@ vector<double> the_gauss_metod(vector<vector<double>>& A, vector<double>& b) {
     }
 
     vector<double> x(n, 0);
-    // �������� ���
+    // Reverse course
     for (int i = n - 1; i >= 0; i--) {
         double sum = 0;
         for (int j = i + 1; j < n; j++) {
@@ -54,7 +54,7 @@ vector<double> the_gauss_metod(vector<vector<double>>& A, vector<double>& b) {
 }
 
 
-// ���������� �����������
+// calculatе the relative error of the Gauss method
 double relative_error(vector<vector<double>>& A, vector<double>& b2, const vector<double>& x) {
     vector<double> x2(A.size());
     x2 = the_gauss_metod(A, b2);
@@ -69,7 +69,7 @@ double relative_error(vector<vector<double>>& A, vector<double>& b2, const vecto
     return maxd / max_x;
 }
 
-// ���������� ����� ������� �������
+// calculating residual vector
 double residual_vector(vector<vector<double>>& A, vector<double> b2, const vector<double>& x, vector<double>& res) {
     vector<double>B = { -6.49, 19.20, -5.09 };
     for (int i = 0; i < A.size(); i++) {
