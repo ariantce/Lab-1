@@ -70,7 +70,7 @@ double relative_error(vector<vector<double>>& A, vector<double>& b2, const vecto
 }
 
 // calculating residual vector
-double residual_vector(vector<vector<double>>& A, vector<double> b2, const vector<double>& x, vector<double>& res) {
+double residual_vector(vector<vector<double>>& A, vector<double>& b2, const vector<double>& x, vector<double>& res) {
     vector<double>B = { -6.49, 19.20, -5.09 };
     for (int i = 0; i < A.size(); i++) {
         for (int j = 0; j < A.size(); j++) {
@@ -80,7 +80,8 @@ double residual_vector(vector<vector<double>>& A, vector<double> b2, const vecto
     }
     double norma = res[0];
     for (int i = 0; i < res.size(); i++) {
-        if (norma < res[i])norma = res[i];
+        if (norma < abs(res[i]))
+            norma = res[i];
     }
     return norma;
 }
