@@ -134,7 +134,7 @@ int main() {
 
     vector<double> x_New(New_A.size());
 
-    output(x, A, b, A_1, b2);
+    /*output(x, A, b, A_1, b2);*/
 
     output(x_New, New_A, New_b, A_1, b2);
 
